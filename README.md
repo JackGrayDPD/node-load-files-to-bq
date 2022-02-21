@@ -1,5 +1,5 @@
-# node-load-csv-to-bq
-Simple script for loading csv files from GCS into BigQuery tables.
+# node-load-files-to-bq
+Simple script for loading data files from GCS into BigQuery tables.
 
 ## Setup
 
