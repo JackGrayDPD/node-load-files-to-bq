@@ -1,0 +1,17 @@
+{
+  "name": "load-csv-to-bq",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/bigquery": "^5.9.0",
+    "@google-cloud/storage": "^5.14.2",
+    "dotenv": "^10.0.0",
+    "yargs": "^17.1.1"
+  }
+}
