@@ -3,7 +3,7 @@ Simple script for loading data files from GCS into BigQuery tables.
 
 ## Setup
 
-This script requires a service account in the relevant project. Create a service account and then create a JSON key file (see the [docs](https://cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries) for a guide on how to do this). Save the resultant JSON file in the root of this project as ```service-account-key.json```.
+This script requires a service account in the destination project. If your GCP bucket is in a different project, the service account will also require permissions sufficient to access objects in GCP Cloud Storage. Create a service account and then create a JSON key file (see the [docs](https://cloud.google.com/bigquery/docs/quickstarts/quickstart-client-libraries) for a guide on how to do this). Save the resultant JSON file in the root of this project as ```service-account-key.json```. **It's very important this service account is created in the destination project as there is no other way to set the project ID.**
 
 Run ```node main --datasetId=DATASET_ID --tableId=TABLE_ID --bucketName="gs://YOUR_BUCKET_NAME" --fileName="FILE_NAME" [--OPTIONAL_FLAGS]```
 
@@ -13,7 +13,7 @@ Run ```node main --datasetId=DATASET_ID --tableId=TABLE_ID --bucketName="gs://YO
 | --version | Show version number | [boolean] |
 | -d, --datasetId, --datasetid | The name of the existing dataset into which to load the data. | [string] [required] |
 | -t, --tableId, --tableid | The name of the table into which to load the data. It does not have to exist. | [string] [required] |
-| -b, --bucketName, --bucketname | The Cloud Storage URI of the bucket where the data is stored. If your bucket is called mybucket, this would be  ```gs://mybucket```. **This argument must be surrounded by double quotes (").** | [string] [required] |
+| -b, --bucketName, --bucketname | The Cloud Storage URI of the bucket where the data is stored. If your bucket is called mybucket, this would be  ```gs://mybucket/```. **This argument must be surrounded by double quotes (").** | [string] [required] |
 | --fileName, --filename, --fn | Supports wildcards as per the [BigQuery client library docs](https://cloud.google.com/bigquery/docs/batch-loading-data#load-wildcards). **This argument must be surrounded by double quotes (").** | [string] [required] |
 | -s, --schema | Optional. If the destination table does not already exist, you need to supply a table schema in the file ```schema.json``` (see [Table](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables)). The table schema must be a JSON file that contains a ```fields``` entry (see [TableFieldSchema](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#TableFieldSchema)) and, if required, a ```timePartition``` or ```rangePartition``` entry (see [Time Partitioning](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#TimePartitioning), [Range Partitioning](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#rangepartitioning)). | [boolean] [default: false] |
 | -p, --partition | Optional. Defines the type of partition. If this flag is provided, you must provide a configuration; see the above point on ```--schema```. | [string] [choices: "time", "range"] |
