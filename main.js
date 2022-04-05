@@ -77,9 +77,16 @@ const args = yargs(process.argv.slice(2))
       describe: 'Optional. An integer indicating the number of header rows in the source data.',
       type: 'number'
     },
+    'nullMarker': {
+      alias: ['nullmarker', 'nm'],
+      demandOption: false,
+      default: '',
+      describe: 'Optional. Specifies the string used for null values in the source data. Default behaviour is to treat all blank fields as nulls.',
+      type: 'string'
+    }
   })
   .parse();
-const { datasetId, tableId, bucketName, fileName, schema, partition, sourceFormat, location, writeDisposition, skipLeadingRows } = args;
+const { datasetId, tableId, bucketName, fileName, schema, partition, sourceFormat, location, writeDisposition, skipLeadingRows, nullMarker } = args;
 
 async function main() {
   if (!datasetId || !tableId || !bucketName || !fileName) {
@@ -92,6 +99,9 @@ async function main() {
     skipLeadingRows,
     writeDisposition,
     location,
+    nullMarker,
+    allowQuotedNewlines: true,
+    allowJaggedRows: true,
   };
   if (schema) {
     let rawSchema = fs.readFileSync('schema.json');

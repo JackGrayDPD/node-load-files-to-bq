@@ -23,5 +23,5 @@ Run ```node main --datasetId=DATASET_ID --tableId=TABLE_ID --bucketName="gs://YO
 | --skipLeadingRows, --skipleadingrows, --skip | Optional. An integer indicating the number of header rows in the source data. | [number] |
 
 You can generate a table schema JSON for any table using this command:
-```bq show --format=prettyjson --schema PROJECT_NAME:DATASET_NAME.TABLE_NAME > schema.json```
+```bq show --format=prettyjson PROJECT_NAME:DATASET_NAME.TABLE_NAME > schema.json```
 This may serve as an example for you to build the schema you need.
