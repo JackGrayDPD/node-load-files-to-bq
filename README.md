@@ -21,6 +21,7 @@ Run ```node main --datasetId=DATASET_ID --tableId=TABLE_ID --bucketName="gs://YO
 | -l, --location | Optional. The location for the job to take place. | [string] [default: "europe-west2"] |
 | --writeDisposition, --writedisposition, --wd | Optional. Specifies the action that occurs if the destination table already exists. | [string] [choices: "WRITE_APPEND", "WRITE_TRUNCATE", "WRITE_EMPTY"] [default: "WRITE_APPEND"] |
 | --skipLeadingRows, --skipleadingrows, --skip | Optional. An integer indicating the number of header rows in the source data. | [number] |
+| --nullMarker, --nullmarker, --nm | Optional. Specifies the string used for null values in the source data. Default behaviour is to treat all blank fields as nulls. | [string] |
 
 You can generate a table schema JSON for any table using this command:
 ```bq show --format=prettyjson PROJECT_NAME:DATASET_NAME.TABLE_NAME > schema.json```
